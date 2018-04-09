@@ -122,8 +122,8 @@ void Factory::registerType(const std::string& tag, AbstractHyperGraphElementCrea
 
   _creator[tag] = ci;
   _tagLookup[c->name()] = tag;
-  element = NULL;
   delete element;
+  element = NULL;
 }
 
   void Factory::unregisterType(const std::string& tag)
