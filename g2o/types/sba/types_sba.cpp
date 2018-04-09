@@ -45,7 +45,7 @@ namespace g2o {
   G2O_REGISTER_TYPE(EDGE_PROJECT_P2SC, EdgeProjectP2SC);
   G2O_REGISTER_TYPE(EDGE_CAM, EdgeSBACam);
   G2O_REGISTER_TYPE(EDGE_SCALE, EdgeSBAScale);
-
+  
   // constructor
   VertexIntrinsics::VertexIntrinsics() 
   {
