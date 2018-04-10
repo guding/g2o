@@ -86,14 +86,14 @@ void Factory::registerType(const std::string& tag, AbstractHyperGraphElementCrea
   CreatorInformation* ci = new CreatorInformation();
   ci->creator = c;
 
-#ifdef G2O_DEBUG_FACTORY
+//#ifdef G2O_DEBUG_FACTORY
   cerr << "# Factory " << (void*)this << " constructing type " << tag << " ";
-#endif
+//#endif
   // construct an element once to figure out its type
   HyperGraph::HyperGraphElement* element = c->construct();
   ci->elementTypeBit = element->elementType();
 
-#ifdef G2O_DEBUG_FACTORY
+//#ifdef G2O_DEBUG_FACTORY
   cerr << "done." << endl;
   cerr << "# Factory " << (void*)this << " registering " << tag;
   cerr << " " << (void*) c << " ";
@@ -118,12 +118,12 @@ void Factory::registerType(const std::string& tag, AbstractHyperGraphElementCrea
       break;
   }
   cerr << endl;
-#endif
+//#endif
 
   _creator[tag] = ci;
   _tagLookup[c->name()] = tag;
   //delete element;
-  element = NULL;
+  //element = NULL;
 }
 
   void Factory::unregisterType(const std::string& tag)
