@@ -36,7 +36,7 @@ namespace g2o {
 
   G2O_REGISTER_TYPE_GROUP(sba);
 
-  G2O_REGISTER_TYPE(VERTEX_CAM, VertexCam);
+  //G2O_REGISTER_TYPE(VERTEX_CAM, VertexCam);
   G2O_REGISTER_TYPE(VERTEX_XYZ, VertexSBAPointXYZ);
   G2O_REGISTER_TYPE(VERTEX_INTRINSICS, VertexIntrinsics);
 
@@ -69,6 +69,7 @@ namespace g2o {
   // constructor
   VertexCam::VertexCam() 
   {
+    std::cerr << "Hello everybody" << std::endl;
   }
 
   bool VertexCam::read(std::istream& is)
