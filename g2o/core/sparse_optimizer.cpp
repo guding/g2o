@@ -365,29 +365,35 @@ namespace g2o{
 
   int SparseOptimizer::optimize(int iterations, bool online)
   {
+      std::cout << "368" << std::endl;
     if (_ivMap.size() == 0) {
       cerr << __PRETTY_FUNCTION__ << ": 0 vertices to optimize, maybe forgot to call initializeOptimization()" << endl;
       return -1;
     }
 
+      std::cout << "374" << std::endl;
     int cjIterations=0;
     number_t cumTime=0;
     bool ok=true;
 
+      std::cout << "379" << std::endl;
     ok = _algorithm->init(online);
     if (! ok) {
       cerr << __PRETTY_FUNCTION__ << " Error while initializing" << endl;
       return -1;
     }
 
+      std::cout << "386" << std::endl;
     _batchStatistics.clear();
     if (_computeBatchStatistics)
       _batchStatistics.resize(iterations);
-    
+
+      std::cout << "391" << std::endl;
     OptimizationAlgorithm::SolverResult result = OptimizationAlgorithm::OK;
     for (int i=0; i<iterations && ! terminate() && ok; i++){
       preIteration(i);
 
+      std::cout << "396" << std::endl;
       if (_computeBatchStatistics) {
         G2OBatchStatistics& cstat = _batchStatistics[i];
         G2OBatchStatistics::setGlobalStats(&cstat);
@@ -395,12 +401,14 @@ namespace g2o{
         cstat.numEdges =  _activeEdges.size();
         cstat.numVertices = _activeVertices.size();
       }
-      
+
+      std::cout << "405" << std::endl;
       number_t ts = get_monotonic_time();
       result = _algorithm->solve(i, online);
       ok = ( result == OptimizationAlgorithm::OK );
 
       bool errorComputed = false;
+      std::cout << "411" << std::endl;
       if (_computeBatchStatistics) {
         computeActiveErrors();
         errorComputed = true;
@@ -408,6 +416,7 @@ namespace g2o{
         _batchStatistics[i].timeIteration = get_monotonic_time()-ts;
       }
 
+      std::cout << "419" << std::endl;
       if (verbose()){
         number_t dts = get_monotonic_time()-ts;
         cumTime += dts;
@@ -421,9 +430,10 @@ namespace g2o{
         _algorithm->printVerbose(cerr);
         cerr << endl;
       }
-      ++cjIterations; 
+      ++cjIterations;
       postIteration(i);
     }
+      std::cout << "436" << std::endl;
     if (result == OptimizationAlgorithm::Fail) {
       return 0;
     }
